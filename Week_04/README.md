@@ -10,6 +10,16 @@ This is a final recap about SQL learnings of the first 4 weeks of the course [Se
 
 `health.user_logs` is a database which measure blood_glucose blood_pressure and weight from a set of users. Composed by 43891 rows of data. 
 
+Here you can see a brief view of the records
+
+| id                                       | log_date                 | measure        | measure_value | systolic | diastolic |
+|------------------------------------------|--------------------------|----------------|---------------|----------|-----------|
+| d14df0c8c1a5f172476b2a1b1f53cf23c6992027 | 2020-10-15T00:00:00.000Z | blood_pressure | 140           | 140      | 113       |
+| 0f7b13f3f0512e6546b8d2c0d56e564a2408536a | 2020-10-21T00:00:00.000Z | blood_glucose  | 166           | 0        | 0         |
+| 0f7b13f3f0512e6546b8d2c0d56e564a2408536a | 2020-10-22T00:00:00.000Z | blood_glucose  | 142           | 0        | 0         |
+| 87be2f14a5550389cb2cba03b3329c54c993f7d2 | 2020-10-12T00:00:00.000Z | weight         | 129.060012817 | 0        | 0         |
+| 0efe1f378aec122877e5f24f204ea70709b1f5f8 | 2020-10-07T00:00:00.000Z | blood_glucose  | 138           | 0        | 0         |
+
 ## First questions about health.user_logs
 
 ### 1.  How many unique users exist in the logs dataset?
