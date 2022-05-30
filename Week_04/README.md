@@ -15,7 +15,7 @@ This is a final recap about SQL learnings of the first 4 weeks of the course [Se
 ### 1.  How many unique users exist in the logs dataset?
 
 A simple question, but nor for it less important.
-**There are 554 different id**
+>**There are 554 different id**
 
 ```SQL
 SELECT
@@ -26,7 +26,8 @@ FROM health.user_logs
 ### 2.  How many total measurements do we have per user on average?
 It's important to track if the users are recording frequently their health values.
 
-On average, every user submitted **79 measures**.
+>On average, every user submitted **79 measures**
+
 ```SQL
 WITH measures_per_user AS (
   SELECT 
@@ -43,7 +44,8 @@ FROM measures_per_user;
 ### 3.  What is the median number of measurements per user?
 Check the median number of measures per user instead of the mean will help to detect if there problems with the data, as median is a metric much more robust against outliers than the mean.
 
-The median number of measures per user is 2, **The difference in the average number of measures (79) indicates the presence of some id which could had an enormous number of records**
+>The median number of measures per user is 2, **The difference in the average number of measures (79) indicates the presence of some id which could had an enormous number of records**
+
 ```SQL
 WITH measures_per_user AS (
 SELECT
@@ -60,7 +62,7 @@ FROM measures_per_user;
 
 It's possible to calculate it directly from the original table, or extract it from a CTE where every ID has the number of different records .
 
-There are **209 id with 3 or more measures**
+>There are **209 id with 3 or more measures**
 
 ```SQL
 SELECT
@@ -75,7 +77,8 @@ HAVING COUNT(*) >= 3;
 
 The same query used above can solve this question changing the number in the last row.
 
-**5 ids has more than 1000 measures**,  this high number of records can indicated very active users, or some testing ids used by designers to check the app works properly.
+>**5 ids has more than 1000 measures**,  this high number of records can indicated very active users, or some testing ids used by designers to check the app works properly
+
 ```SQL
 SELECT
   id,
@@ -109,7 +112,7 @@ FROM (
   FROM health.user_logs
   WHERE measure = 'blood_glucose') AS subquery
 ```
-**325 users incorporate blood glucose values to the database**
+>**325 users incorporate blood glucose values to the database**
 
 ### 7. How many users have at least 2 types of measurements?
 
@@ -136,14 +139,16 @@ FROM
    GROUP BY id
    HAVING COUNT(DISTINCT measure) >= 2) AS subquery;
 ```
-**204 different users** introduce 2 or more types of measures
+>**204 different users** introduce 2 or more types of measures
+
 ### 8. How many users have all 3 measures - blood glucose, weight and blood pressure?
 
 Who and how many users incorporate the three different parameters asked (weigth, blood_glucose and blood_pressure) ?
 
 Those users help to better understand the relation of the three variables.
 
-**50 users** incorporate to the database the three different measures asked. **Just 9% of the users**
+>**50 users** incorporate to the database the three different measures asked. **Just 9% of the users**
+
 ```SQL
 WITH CTE AS (
 SELECT
@@ -162,6 +167,7 @@ SELECT
 FROM CTE
 GROUP BY types_of_measures;
 ```
+
 ### 9. For users that have blood pressure measurements, what is the median systolic/diastolic blood pressure values?
 
 This parameter could be important. However, as the data still contains some errors which can drastically affect the mean is safer to check the median (less impacted by outliers).
@@ -175,8 +181,8 @@ SELECT
 FROM health.user_logs 
 WHERE measure = 'blood_pressure';
 ```
-**Median systolic pressure is 126**
-**Median diastolic pressure is 79**  
+>**Median systolic pressure is 126**
+>**Median diastolic pressure is 79**  
 
 ---
 ### 10. Debbuging the code given by the team
